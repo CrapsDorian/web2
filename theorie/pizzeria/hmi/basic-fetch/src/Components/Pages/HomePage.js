@@ -1,55 +1,19 @@
 import { clearPage } from '../../utils/render';
 
-const MENU = [
-  {
-    id: 1,
-    title: '4 fromages',
-    content: 'Gruyère, Sérac, Appenzel, Gorgonzola, Tomates',
-  },
-  {
-    id: 2,
-    title: 'Vegan',
-    content: 'Tomates, Courgettes, Oignons, Aubergines, Poivrons',
-  },
-  {
-    id: 3,
-    title: 'Vegetarian',
-    content: 'Mozarella, Tomates, Oignons, Poivrons, Champignons, Olives',
-  },
-  {
-    id: 4,
-    title: 'Alpage',
-    content: 'Gruyère, Mozarella, Lardons, Tomates',
-  },
-  {
-    id: 5,
-    title: 'Diable',
-    content: 'Tomates, Mozarella, Chorizo piquant, Jalapenos',
-  },
-];
-
-const DRINKS = [
-  {
-    id: 1,
-    title: 'Lemonade',
-    content: 'Sparkling water, lemon, ice cubes',
-  },
-  {
-    id: 2,
-    title: 'Ice tea',
-    content: 'Mint, ginger, water',
-  },
-  {
-    id: 3,
-    title: 'Exotic Kombucha',
-    content: 'Mango, Sparkling water, Fermented tea',
-  },
-];
-
 const HomePage = () => {
   clearPage();
 
-  renderMenuFromString(MENU);
+  fetch('http://localhost:3000/pizzas')
+    .then((response) => {
+      if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+      return response.json();
+    })
+    .then((pizzas) => {
+      renderMenuFromString(pizzas);
+    })
+    .catch((err) => {
+      console.error('HomePage::error: ', err);
+    });
 
   attachOnMouseEventsToGoGreen();
 
