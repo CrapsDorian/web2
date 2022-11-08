@@ -1,5 +1,23 @@
 import { clearPage } from '../../utils/render';
 
+const DRINKS = [
+  {
+    id: 1,
+    title: 'Lemonade',
+    content: 'Sparkling water, lemon, ice cubes',
+  },
+  {
+    id: 2,
+    title: 'Ice tea',
+    content: 'Mint, ginger, water',
+  },
+  {
+    id: 3,
+    title: 'Exotic Kombucha',
+    content: 'Mango, Sparkling water, Fermented tea',
+  },
+];
+
 const HomePage = () => {
   clearPage();
 
@@ -17,7 +35,6 @@ const HomePage = () => {
       console.error('HomePage::error: ', err);
     });
 };
-
 
 function renderMenuFromString(menu) {
   const menuTableAsString = getMenuTableAsString(menu);
