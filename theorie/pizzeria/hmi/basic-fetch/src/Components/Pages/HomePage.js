@@ -10,15 +10,14 @@ const HomePage = () => {
     })
     .then((pizzas) => {
       renderMenuFromString(pizzas);
+      attachOnMouseEventsToGoGreen();
+      renderDrinksFromNodes(DRINKS);
     })
     .catch((err) => {
       console.error('HomePage::error: ', err);
     });
-
-  attachOnMouseEventsToGoGreen();
-
-  renderDrinksFromNodes(DRINKS);
 };
+
 
 function renderMenuFromString(menu) {
   const menuTableAsString = getMenuTableAsString(menu);
